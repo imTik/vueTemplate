@@ -1,0 +1,82 @@
+// 系统规范 颜色
+// @blue: #0099ff;
+// @red: #FF4343;
+// @line: #e5e5e5;
+@blue:      #1A75CF;
+@red:       #D0021B;
+@yellow:    #ffb636;
+@green:     #33cc99;
+@white:     #fff;
+@gray:      #c8c9cc;
+@normal:    #333;
+@light:     #4A4A4A;
+@text:      #666;
+@secondary: #999;
+@tips:      #bebebe;
+@line:      #D2D2D2;
+@bg:        #f2f3f4;
+
+// 字体大小
+@small:  14px;
+@medium: 16px;
+@large:  18px;
+@super:  20px;
+
+// 系统规范 文字
+//  textarea & input placeholder字体颜色
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  color: @tips;
+}
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  color: @tips;
+}
+textarea:-moz-placeholder,
+input:-moz-placeholder {
+  color: @tips;
+}
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  color: @tips;
+}
+
+// 页面样式
+.white-bg {
+  position: relative;
+  height: 100%;
+  border-radius: 5px;
+  background: @white;
+  overflow: auto;
+}
+
+.full-height {
+  height: 100%;
+}
+.half-width {
+  width: 50%;
+}
+
+.border-spacing {
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.img-auto {
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.img-force {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

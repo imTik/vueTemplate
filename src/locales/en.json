@@ -1,0 +1,26 @@
+{
+  "pageTitle": "Vue Template",
+  "public": {
+    "inputTips": "Please input",
+    "selectTips": "Plese select",
+    "submit": "Submit",
+    "next": "Next step",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "reset": "Reset",
+    "nodata": "No data",
+    "unfold": "Unfold",
+    "fold": "Fold",
+    "edit": "Edit",
+    "del": "Delete",
+    "delSuccess": "Delete successfully",
+    "delFaild": "An error occurred when deleting",
+    "loading": "Loading",
+    "atBottom": "This is the bottom",
+    "submitFailed": "Submit failed",
+    "emptyUser": "No user information"
+  },
+  "language": {
+    "permissionTips": "No enough authorization"
+  }
+}
