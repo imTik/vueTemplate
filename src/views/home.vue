@@ -16,6 +16,7 @@ export default {
     ...mapGetters([
       'APP_ID',
       'APP_NAME',
+      'INSIDE_APP_NAME',
       'CORP_ID',
     ])
   },
@@ -89,6 +90,36 @@ export default {
         return href.substr(0, href.length - hash.length);
       }
       return null;
+    },
+    
+    // 获取用户与门店信息
+    getUserInfo () {
+      this.loading = true;
+      let code = this.getUrlParams('code');
+      let params = {
+        appName: this.APP_NAME,
+        format: "json",
+        param: {
+          appName: this.INSIDE_APP_NAME,
+          code: code,
+          dept: true
+        },
+        sign: "",
+        source: "",
+        timestamp: "",
+        version: ""
+      };
+
+      this.$http.getUserInfoByCode(params)
+      .then(res => {
+        // 用户信息
+        // console.log('获取用户信息', res.result);
+        if (res && res.result) {
+
+          this.$store.commit('SAVE_USER_INFO', res.result);
+
+        };
+      });
     },
 
   }
