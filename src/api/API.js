@@ -12,6 +12,11 @@ const API = {
     return setRequest('post', '/workwx-api/workwechat/getSignatureByApp', params);
   },
   
+  // 获取用户信息
+  getUserInfoByCode: function (params) {
+    return HTTP('post', '/workwx-api/workwechat/getWorkWXUserByCode', params);
+  },
+  
 };
 
 export default API;
