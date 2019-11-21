@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     appId: '1000014',
     appName: 'TourRoadmap',
+    insideAppName: 'questionnaire',
     corpID: 'ww23abd7b4543370ca',
     batchNumber: 63, // 63
 
@@ -47,6 +48,7 @@ export default new Vuex.Store({
 
     APP_ID: state => state.appId,
     APP_NAME: state => state.appName,
+    INSIDE_APP_NAME: state => state.insideAppName,
     CORP_ID: state => state.corpID,
     KEEP_ALIVE_LISTS: state => state.keepAliveLists,
 
