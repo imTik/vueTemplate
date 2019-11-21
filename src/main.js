@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import API from './api/API'
+import directive from './utils/directive'
 
 // ui框架引入
 import { 
@@ -44,6 +45,11 @@ Vue.prototype.$http = API;
 // 全局组件
 import globalComponent from './utils/components'
 Vue.use(globalComponent);
+
+// 全局指令
+for(let i in directive) {
+  Vue.directive(i, directive[i]);
+}
 
 // mixin
 import mixin from './utils/mixin'
