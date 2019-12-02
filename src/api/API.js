@@ -1,4 +1,4 @@
-import { setRequest, packageAxios } from './request';
+import { setRequest } from './request';
 
 const LOCAL_URL = {}
 if (process.env.VUE_APP_HOST === 'dev') {
