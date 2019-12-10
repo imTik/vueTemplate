@@ -37,6 +37,9 @@ export default {
      // 获取用户信息
     this.features.getUserInfo().then(res => {
       console.log('用户信息', res);
+      if (res && res.result) {
+        this.$store.commit('SAVE_USER_INFO', res.result);
+      }
     });
 
   },
