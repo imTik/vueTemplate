@@ -46,7 +46,7 @@ export default {
     margin: auto;
     border-radius: 5px;
     transform: translateY(-50%);
-    span {font-size: @medium;}
+    span {font-size: @m;}
   }
   .bg {
     background: rgba(0,0,0,.6);

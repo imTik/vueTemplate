@@ -1,8 +1,9 @@
 const FN = {
 
   // 获取localStorage数据
-  getLocalData: function (key) {
-    let _detail = JSON.parse(localStorage.getItem(key));
+  getLocalData: function (key, isString = false) {
+    let _detail = '';
+    isString ? _detail = localStorage.getItem(key) : JSON.parse(localStorage.getItem(key));
     return _detail;
   },
 
@@ -11,16 +12,6 @@ const FN = {
     localStorage.setItem('USER_INFO', JSON.stringify(data));
   },
 
-  // 保存batchNumber
-  saveBatchNumber: function (number) {
-    localStorage.setItem('BATCH_NUMBER', number);
-  },
-
-  getBatchNumber: function () {
-    let _num = '';
-    if (localStorage.getItem('BATCH_NUMBER') !== 'undefined') _num = localStorage.getItem('BATCH_NUMBER');
-    return _num;
-  }
 
 }
 

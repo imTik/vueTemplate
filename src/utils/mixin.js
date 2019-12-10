@@ -1,4 +1,3 @@
-import store from '../store.js'
 import { mapGetters } from 'vuex'
 const mixin = {
   data() {
@@ -10,8 +9,6 @@ const mixin = {
     ...mapGetters([
       'USER_INFO', 
       'STORE_INFO',
-      'BATCH_NUMBER',
-      'ROLE'
     ]),
   },
   methods: {
@@ -77,42 +74,6 @@ const mixin = {
       return Y + '-' + M;
     },
 
-    // 构建URL
-    createUrl () {
-      let APP_ID = store.getters.APP_ID;
-      let corpID = store.getters.CORP_ID;
-      let redirectURI = 'http://tik.easy.echosite.cn/';
-
-      let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + 
-                 corpID + 
-                 '&redirect_uri=' + 
-                 redirectURI + 
-                 '&response_type=code&scope=snsapi_privateinfo&agentid=' + 
-                 APP_ID + 
-                 '&state=STATE#wechat_redirect';
-      return url;
-    },
-
-    // 从url获取指定参数
-    getUrlParams (name) {
-      try {
-
-        if (window.location.search) {
-          let urlParams = window.location.search.substr(1);
-          let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-          let dataArr = urlParams.match(reg);
-          return dataArr[2];
-
-        } else {
-          throw('参数获取错误');
-        }
-      }
-      catch (err) {
-        console.error(err);
-      }
-      
-    },
-    
     // 对象数据转Form格式
     dataToForm (d) {
       let _form = new FormData();
@@ -122,14 +83,6 @@ const mixin = {
       return _form;
     },
 
-    // 判断中英
-    judgeEn (ZH, EN) {
-      if (this.$i18n.locale === 'cn') {
-        return ZH;
-      } else if (this.$i18n.locale === 'en') {
-        return EN;
-      };
-    }
   }
 }
 

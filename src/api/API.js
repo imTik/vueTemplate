@@ -1,4 +1,4 @@
-import { setRequest } from './request';
+import { HTTP } from './request';
 
 const LOCAL_URL = {}
 if (process.env.VUE_APP_HOST === 'dev') {
@@ -9,12 +9,7 @@ const API = {
 
   // 获取签名信息
   getSignatureByApp: function (params) {
-    return setRequest('post', '/workwx-api/workwechat/getSignatureByApp', params);
-  },
-  
-  // 获取用户信息
-  getUserInfoByCode: function (params) {
-    return HTTP('post', '/workwx-api/workwechat/getWorkWXUserByCode', params);
+    return HTTP('post', '/workwx-api/workwechat/getSignatureByApp', params);
   },
   
 };

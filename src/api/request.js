@@ -14,7 +14,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
  * @param {Object} userConfig  自定义设置
  * 先创建实例之后在请求拦截器判断请求类型
  */
-function setRequest(method, url, params = '', userConfig) {
+function HTTP(method, url, params = '', userConfig) {
 
   const axiosInstance = axios.create();
 
@@ -122,6 +122,6 @@ packageAxios.interceptors.response.use(
 
 
 export {
-  setRequest,
+  HTTP,
   packageAxios
 }

@@ -1,4 +1,4 @@
-export function  checkApi (api, sdk, callback) {
+export function checkApi (api, sdk, callback) {
   if (sdk) {
     sdk.checkJsApi({
       jsApiList: [api],

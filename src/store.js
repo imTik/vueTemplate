@@ -5,16 +5,11 @@ import localFn from './utils/localStorageFn'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    appId: '1000014',
     appName: 'TourRoadmap',
     insideAppName: 'questionnaire',
-    corpID: 'ww23abd7b4543370ca',
-    batchNumber: 63, // 63
 
     keepAliveLists: [],
-
-    userInfo: {},
-    storeInfo: {},
+    userInfo: null,
 
   },
   mutations: {
@@ -23,12 +18,6 @@ export default new Vuex.Store({
     SAVE_USER_INFO (state, data) {
       state.userInfo = data;
       localFn.saveUserInfo(data);
-    },
-
-    // 保存batchNumber
-    SAVE_BATC_NUMBER(state, data) {
-      state.batchNumber = data;
-      localFn.saveBatchNumber(data);
     },
 
     // 保存组件缓存列表
@@ -46,15 +35,14 @@ export default new Vuex.Store({
   },
   getters: {
 
-    APP_ID: state => state.appId,
     APP_NAME: state => state.appName,
     INSIDE_APP_NAME: state => state.insideAppName,
-    CORP_ID: state => state.corpID,
+    
     KEEP_ALIVE_LISTS: state => state.keepAliveLists,
 
-    BATCH_NUMBER: state => {
-      if(!state.batchNumber) state.batchNumber = localFn.getBatchNumber();
-      return state.batchNumber;
+    USER_INFO: state => {
+      if(!state.userInfo) state.userInfo = localFn.getLocalData('USER_INFO');
+      return state.userInfo;
     },
 
 
