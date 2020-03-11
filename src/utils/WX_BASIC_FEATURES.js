@@ -20,6 +20,10 @@ init.prototype.getUrlNoHash = function () {
 // 从url截取参数
 init.prototype.getUrlParams = function (name) {
   try {
+
+    const urlSplits = window.location.href.split('?');
+    if (urlSplits.length <= 1) throw('URL参数截取错误');
+    
     let hrefParams = window.location.href.split('?')[1].split('#/')[0];
     if (hrefParams) {
       let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
