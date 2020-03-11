@@ -1,4 +1,6 @@
 import { mapGetters } from 'vuex'
+import errCode from './errCode'
+import { Toast } from 'vant';
 const mixin = {
   data() {
     return {
@@ -82,6 +84,22 @@ const mixin = {
       }
       return _form;
     },
+
+    // 错误处理
+    errHander (e) {
+      if (errCode[e]) {
+        Toast(errCode[e]);
+
+      } else {
+        if (typeof e === 'string') {
+          Toast(e);
+
+        } else {
+          Toast('未知错误');
+
+        }
+      }
+    }
 
   }
 }
