@@ -34,7 +34,7 @@ export default {
     const corpId = this.features.getUrlParams('state');
     this.features.initSDK(corpId, apiList); // 注册SDK
 
-     // 获取用户信息
+    // 获取用户信息
     this.features.getUserInfo().then(res => {
       console.log('用户信息', res);
       if (res && res.result) {

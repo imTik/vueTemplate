@@ -11,6 +11,8 @@ export default new Vuex.Store({
     keepAliveLists: [],
     userInfo: null,
 
+    token: '',
+
   },
   mutations: {
 
@@ -45,6 +47,10 @@ export default new Vuex.Store({
       return state.userInfo;
     },
 
+    TOKEN: state => {
+      if(!state.token) state.token = localFn.getLocalData('TOKEN');
+      return state.token;
+    },
 
   },
 })

@@ -1,5 +1,6 @@
 import axios from 'axios';
-// import store from '@/store';
+import store from '@/store';
+import { getClientInfo } from '@/utils/client_info'
 // import { Toast } from 'vant'
 
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL; 
@@ -23,9 +24,15 @@ function HTTP(method, url, params = '', userConfig) {
     config => {
 
       config.timeout = 120000;
-      // config.headers['X-Session-Token'] = store.state.token;
       config.url = url;
       config.method = method;
+
+      // 用户信息采集
+      // config.headers['X-Session-Token'] = store.state.token;
+      if (store.getters.TOKEN) {
+        config.headers['Authorization'] = JSON.stringify({ 'token': store.getters.TOKEN })
+        config.headers['clientInfo'] = getClientInfo()
+      }
 
       if (userConfig) {
         Object.assign(config, userConfig);
@@ -82,9 +89,15 @@ packageAxios.interceptors.request.use(
   config => {
 
     config.timeout = 120000;
-    // config.headers['X-Session-Token'] = store.state.token;
     config.url = url;
     config.method = method;
+    // config.headers['X-Session-Token'] = store.state.token;
+
+    // 用户信息采集
+    if (store.getters.TOKEN) {
+      config.headers['Authorization'] = JSON.stringify({ 'token': store.getters.TOKEN })
+      config.headers['clientInfo'] = getClientInfo()
+    }
 
     if (userConfig) {
       Object.assign(config, userConfig);
