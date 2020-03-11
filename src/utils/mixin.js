@@ -86,7 +86,7 @@ const mixin = {
     },
 
     // 错误处理
-    errHander (e) {
+    errHandler (e) {
       if (errCode[e]) {
         Toast(errCode[e]);
 

@@ -28,19 +28,26 @@ export default {
   },
   created () {
 
-    this.features = new BasicFeatures(this.APP_NAME, this.INSIDE_APP_NAME);
+    try {
+      this.features = new BasicFeatures(this.APP_NAME, this.INSIDE_APP_NAME);
 
-    const apiList = ['startWifi'];  // 具体参考企业微信API
-    const corpId = this.features.getUrlParams('state');
-    this.features.initSDK(corpId, apiList); // 注册SDK
+      const apiList = ['startWifi'];  // 具体参考企业微信API
+      const corpId = this.features.getUrlParams('state');
+      this.features.initSDK(corpId, apiList); // 注册SDK
 
-    // 获取用户信息
-    this.features.getUserInfo().then(res => {
-      console.log('用户信息', res);
-      if (res && res.result) {
-        this.$store.commit('SAVE_USER_INFO', res.result);
-      }
-    });
+      // 获取用户信息
+      this.features.getUserInfo().then(res => {
+        console.log('用户信息', res);
+        if (res && res.result) {
+          this.$store.commit('SAVE_USER_INFO', res.result);
+        }
+      });
+    }
+    catch (e) {
+      this.errHandler(e);
+    }
+
+    
 
   },
   methods: {}
