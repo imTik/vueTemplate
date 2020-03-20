@@ -89,8 +89,8 @@ packageAxios.interceptors.request.use(
   config => {
 
     config.timeout = 120000;
-    config.url = url;
-    config.method = method;
+    // config.url = url;
+    // config.method = method;
     // config.headers['X-Session-Token'] = store.state.token;
 
     // 用户信息采集
@@ -99,11 +99,26 @@ packageAxios.interceptors.request.use(
       config.headers['clientInfo'] = getClientInfo()
     }
 
-    if (userConfig) {
-      Object.assign(config, userConfig);
-    }
+    if (!(config.data instanceof FormData)) {
+      const req_model = {
+        appName: packageConfig.name,
+        format: '',
+        sign: '',
+        source: 'aloha_front_web',
+        timestamp: new Date().getTime() + '',
+        version: packageConfig.version
+      }
+      switch (config.method.toUpperCase()) {
+        case 'POST':
+          req_model.param = config.data
+          config.data = req_model
+          break
+        case 'GET':
+          break
+      }
+    };
 
-    setParams(config);
+    // setParams(config);
     return config;
   },
   error => Promise.reject(error)

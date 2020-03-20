@@ -48,15 +48,15 @@ const mixin = {
       if (S < 10) S = '0' + S;
 
       try {
-        if (type === 'FULL') {
+        if (type.toUpperCase() === 'FULL') {
           return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
-        } else if (type === 'YMD') {
+        } else if (type.toUpperCase() === 'YMD') {
           return Y + '-' + M + '-' + D;
-        } else if (type === 'YM') {
+        } else if (type.toUpperCase() === 'YM') {
           return Y + '-' + M;
-        } else if (type === 'T') {
+        } else if (type.toUpperCase() === 'T') {
           return H + ':' + Mi + ':' + S;
-        } else if (type === 'TAMP') {
+        } else if (type.toUpperCase() === 'TAMP') {
           return Date.parse(_date);
         } else {
           throw('getNowDate调用错误，提示：错误的传值，参数参考: "FULL/YMD/YM/T/TAMP"');

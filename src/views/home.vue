@@ -31,7 +31,7 @@ export default {
     try {
       this.features = new BasicFeatures(this.APP_NAME, this.INSIDE_APP_NAME);
 
-      const apiList = ['startWifi'];  // 具体参考企业微信API
+      const apiList = ['startWifi']; // 具体参考企业微信API
       const corpId = this.features.getUrlParams('state');
       this.features.initSDK(corpId, apiList); // 注册SDK
 
@@ -46,8 +46,6 @@ export default {
     catch (e) {
       this.errHandler(e);
     }
-
-    
 
   },
   methods: {}
