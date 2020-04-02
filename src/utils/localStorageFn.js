@@ -3,7 +3,7 @@ const FN = {
   // 获取localStorage数据
   getLocalData: function (key, isString = false) {
     let _detail = '';
-    isString ? _detail = localStorage.getItem(key) : JSON.parse(localStorage.getItem(key));
+    isString ? _detail = localStorage.getItem(key) : _detail = JSON.parse(localStorage.getItem(key));
     return _detail;
   },
 
