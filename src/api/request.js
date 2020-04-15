@@ -42,7 +42,7 @@ function HTTP(method, url, params = '', userConfig) {
       setParams(config);
       return config;
     },
-    error => Promise.reject(error)
+    // error => Promise.reject(error)
   );
 
   function setParams(c) {
@@ -124,7 +124,7 @@ packageAxios.interceptors.request.use(
     // setParams(config);
     return config;
   },
-  error => Promise.reject(error)
+  // error => Promise.reject(error)
 );
 
 function setParams(c) {
