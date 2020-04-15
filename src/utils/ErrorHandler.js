@@ -29,7 +29,7 @@ export function errHandler (e, msg = null) {
       } else if (errTips.indexOf(code405) !== -1) {
         Toast('错误码: 405, 请求方法错误.');
       } else if (errTips.indexOf(code500) !== -1) {
-        Toast('系统开小差了~');
+        Toast('错误码: 500, 系统开小差了~');
       } else if (errTips.indexOf(timeout) !== -1) {
         Toast('请求超时.');
       } else {
