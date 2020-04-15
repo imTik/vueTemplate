@@ -69,7 +69,8 @@ function HTTP(method, url, params = '', userConfig) {
       }
       
     },
-    error => Promise.reject(error)
+    // error => errHandler(error)
+    // error => Promise.reject(error) // 旧方法
   )
 
   return axiosInstance();
@@ -148,7 +149,7 @@ packageAxios.interceptors.response.use(
     }
     
   },
-  error => Promise.reject(error)
+  // error => errHandler(error)
 )
 
 
