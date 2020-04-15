@@ -60,13 +60,8 @@ function HTTP(method, url, params = '', userConfig) {
 
       // ...自定义code失败提示
       let code = Number(response.data.code);
-      if (code === 0) {
-        return response.data;
-      } else {
-        errHandler(code, response.data.message);
-        // if (response.data.message) Toast(response.data.message);
-        return response.data;
-      }
+      if (code !== 0) errHandler(code, response.data.message);
+      return response.data;
       
     },
     // error => errHandler(error)
