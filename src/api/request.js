@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from '@/store';
+import { errHandler } from '../utils/ErrorHandler';
 import { getClientInfo } from '@/utils/client_info'
 // import { Toast } from 'vant'
 
@@ -62,6 +63,7 @@ function HTTP(method, url, params = '', userConfig) {
       if (code === 0) {
         return response.data;
       } else {
+        errHandler(code, response.data.message);
         // if (response.data.message) Toast(response.data.message);
         return response.data;
       }
@@ -141,6 +143,7 @@ packageAxios.interceptors.response.use(
     if (code === 0) {
       return response.data;
     } else {
+      errHandler(code, response.data.message);
       return response.data;
     }
     
