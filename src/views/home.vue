@@ -8,9 +8,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-// import { checkApi } from '../utils/WX_API_CHECK'
-import BasicFeatures from '@/utils/WX_BASIC_FEATURES'
+import { mapGetters } from 'vuex';
+// import { checkApi } from '../utils/WX_API_CHECK';
+import BasicFeatures from '@/utils/WX_BASIC_FEATURES';
+import { getUrlParams } from '../utils/publicFn';
+
 export default {
   name: 'home',
   computed: {
@@ -32,7 +34,7 @@ export default {
       this.features = new BasicFeatures(this.APP_NAME, this.INSIDE_APP_NAME);
 
       const apiList = ['startWifi']; // 具体参考企业微信API
-      const corpId = this.features.getUrlParams('state');
+      const corpId = getUrlParams('state');
       this.features.initSDK(corpId, apiList); // 注册SDK
 
       // 获取用户信息

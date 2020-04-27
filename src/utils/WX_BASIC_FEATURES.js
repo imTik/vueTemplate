@@ -1,4 +1,5 @@
 import { HTTP } from '../api/request';
+import { getUrlParams } from './publicFn';
 
 function init (appName = '', insideAppName = '') {
   this.appName = appName;
@@ -15,29 +16,6 @@ init.prototype.getUrlNoHash = function () {
     return href.substr(0, href.length - hash.length);
   }
   return null;
-};
-
-// 从url截取参数
-init.prototype.getUrlParams = function (name) {
-  try {
-
-    const urlSplits = window.location.href.split('?');
-    if (urlSplits.length <= 1) throw('URL参数截取错误');
-    
-    let hrefParams = window.location.href.split('?')[1].split('#/')[0];
-    if (hrefParams) {
-      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-      let dataArr = hrefParams.match(reg);
-      return dataArr[2];
-
-    } else {
-      throw('从URL获取' + name + '错误');
-    }
-  }
-  catch (err) {
-    console.error(err);
-  }
-  
 };
 
 // 初始化sdk
@@ -81,7 +59,7 @@ init.prototype.initSDK = function (corpId, apiList) {
 // 获取用户数据
 init.prototype.getUserInfo = function () {
 
-  let code = this.getUrlParams('code');
+  let code = getUrlParams('code');
   let params = {
     appName: this.appName,
     format: "json",
