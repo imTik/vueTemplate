@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import localFn from './utils/localStorageFn'
+import localFn from '../utils/localStorageFn'
 
 Vue.use(Vuex)
 export default new Vuex.Store({

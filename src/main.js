@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import API from './api/API'
-import directive from './utils/directive'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router/router';
+import store from './store/store';
+import API from './api/API';
+import directive from './utils/directive';
 
 // ui框架引入
 import { 
@@ -62,6 +62,11 @@ import vConsole from 'vconsole'
 if (process.env.VUE_APP_HOST !== 'prod') {
   const vconsole = new vConsole();
 }
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 
 new Vue({
   router,

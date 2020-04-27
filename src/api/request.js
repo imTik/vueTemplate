@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from '@/store';
+import store from '@/store/store';
 import { errHandler } from '../utils/ErrorHandler';
 import { getClientInfo } from '@/utils/client_info'
 // import { Toast } from 'vant'
