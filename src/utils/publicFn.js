@@ -1,8 +1,15 @@
 // import pako from 'pako';
 
+// 手机正则
 export function isPhone (phone) {
   let pattern = /^1(3|4|5|7|6|8|9)\d{9}$/;
   return pattern.test(phone);
+};
+
+// 整数正则
+export function isInteger (number) {
+  let pattern = /^[0-9]*[1-9][0-9]*$/;
+  return pattern.test(number);
 };
 
 /**
@@ -43,11 +50,6 @@ export function getNowDate(type = 'FULL', tamp) {
   }
 };
 
-export function isInteger (number) {
-  let pattern = /^[0-9]*[1-9][0-9]*$/;
-  return pattern.test(number);
-};
-
 // 从url截取参数
 export function getUrlParams (name) {
   try {
@@ -70,6 +72,14 @@ export function getUrlParams (name) {
   }
 };
 
+// 对象数据转Form格式
+export function dataToForm (d) {
+  let _form = new FormData();
+  for(let i in d) {
+    _form.append(i, d[i]);
+  }
+  return _form;
+};
 
 // pako 加密
 // export function pakoEncrypt (data) {
