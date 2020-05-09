@@ -52,6 +52,8 @@ export function getNowDate(type = 'FULL', tamp) {
 function BuriedDot (router, cb, leaveTime = 60000) {
   let pageCount = 0;
   let lastTime = 0;
+  let closeTime = 0;
+  let firstLoadTime = getNowDate();
 
   let dotData = {
     pageCount,
@@ -60,11 +62,15 @@ function BuriedDot (router, cb, leaveTime = 60000) {
     currentPagePath: '',
     currentPageTitle: '',
     enterTime: 0,
-    lastTime
+    lastTime,
+    closeTime,
+    firstLoadTime
   }
 
   // 路由的埋点
   router.beforeEach((to, from, next) => {
+
+    checkDataAttribute();
 
     let enterTime = getNowDate();
     pageCount ++;
@@ -72,16 +78,14 @@ function BuriedDot (router, cb, leaveTime = 60000) {
     let currentPageTitle = '';
     if(from.meta && from.meta.title) fromPagaTitle = from.meta.title;
     if(to.meta && to.meta.title) currentPageTitle = to.meta.title;
-
-    dotData = {
-      pageCount,
-      formPagePath: from.path,
-      fromPagaTitle,
-      currentPagePath: to.path,
-      currentPageTitle,
-      enterTime,
-      lastTime
-    };
+    
+    dotData.pageCount        = pageCount;
+    dotData.formPagePath     = from.path;
+    dotData.currentPagePath  = to.path;
+    dotData.fromPagaTitle    = fromPagaTitle;
+    dotData.currentPageTitle = currentPageTitle;
+    dotData.enterTime        = enterTime;
+    dotData.lastTime         = lastTime;
 
     // console.log('---这里是埋点', dotData);
     lastTime = enterTime;
@@ -96,12 +100,12 @@ function BuriedDot (router, cb, leaveTime = 60000) {
   // 点击埋点
   BODY.addEventListener('click', e => {
 
-    let elPoint = e.target.getAttribute('data-dot');
-    console.log('元素的埋点标记: ', elPoint);
-    if (elPoint === null) return;
+    let elDotInfo = e.target.getAttribute('data-dot');
+    console.log('元素的埋点标记: ', elDotInfo);
+    if (elDotInfo === null) return;
 
-    dotData.el = e.target;
-    dotData.elPoint = elPoint;
+    // dotData.el = e.target;
+    dotData.elDotInfo = elDotInfo;
     cb('click', dotData);
 
   });
@@ -121,11 +125,19 @@ function BuriedDot (router, cb, leaveTime = 60000) {
     }, leaveTime);
 
   });
+  
+  // 关闭页面埋点
+  window.onbeforeunload = function (e) {
+    checkDataAttribute();
+    dotData.closeTime = getNowDate();
+    cb('close', dotData);
+    return;
+  };
 
   // 检测是否有el字段 有则删除
   function checkDataAttribute () {
     if (dotData.hasOwnProperty('el')) delete dotData.el;
-    if (dotData.hasOwnProperty('elPoint')) delete dotData.elPoint;
+    if (dotData.hasOwnProperty('elDotInfo')) delete dotData.elDotInfo;
   }
 };
 
