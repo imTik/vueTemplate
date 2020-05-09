@@ -63,6 +63,13 @@ if (process.env.VUE_APP_HOST !== 'prod') {
   const vconsole = new vConsole();
 }
 
+// 埋点使用方法
+import BuriedDot from './utils/buriedDot';
+BuriedDot(router, (mark, buriedData) => {
+  console.log('触发埋点的标记: ', mark)
+  console.log('获取到的埋点信息: ', buriedData);
+}, 60000);
+
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
   next();

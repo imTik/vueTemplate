@@ -1,7 +1,7 @@
 <template>
   <div class="home-main">
 
-    <h1>Vue Front 项目模板</h1>
+    <h1 data-dot="title_point">Vue Front 项目模板</h1>
     <global-loading mask="small" v-show="loading" />
 
   </div>
