@@ -166,7 +166,7 @@ function getNowDate(type = 'FULL', tamp) {
 // 获取浏览器名字
 function getBrowserName () {
   let userAgent = window.navigator.userAgent;
-  if (userAgent.indexOf("OPR") > -1||userAgent.indexOf("Opera") > -1) {
+  if (userAgent.indexOf("OPR") > -1 || userAgent.indexOf("Opera") > -1) {
     //判断是否Opera浏览器
     return "Opera"
   } else if (userAgent.indexOf("Firefox") > -1) {
@@ -177,6 +177,10 @@ function getBrowserName () {
   } else if (userAgent.indexOf("Safari") > -1) {
     //判断是否Safari浏览器
     return "Safari";
+  } else if (userAgent.indexOf("Edge") > -1) {
+    return 'Edge'
+  } else if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) {
+    return 'IE'
   } else{
     //其他
     return '--'
