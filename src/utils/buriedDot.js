@@ -84,10 +84,16 @@ function BuriedDot (router, cb, leaveTime = 60000) {
   // 点击埋点
   BODY.addEventListener('click', e => {
 
-    let elDotInfo = e.target.getAttribute('data-dot');
-    console.log('元素的埋点标记: ', elDotInfo);
-    if (elDotInfo === null) return;
+    let _target = e.target;
+    let elDotInfo = _target.getAttribute('data-dot');
+    while(!elDotInfo && _target !== e.currentTarget) {
+      _target = _target.parentNode;
+      elDotInfo = _target.getAttribute('data-dot');
+    };
+    // console.log('元素的埋点标记: ', elDotInfo);
+    
 
+    if (elDotInfo === null) return;
     // dotData.el = e.target;
     dotDetail.dotData.elDotInfo = elDotInfo;
     cb('click', dotDetail);

@@ -4,6 +4,10 @@
     <h1 data-dot="title_point">Vue Front 项目模板</h1>
     <global-loading mask="small" v-show="loading" />
 
+    <div data-dot="test">
+      <span>ahaa</span>
+    </div>
+
   </div>
 </template>
 
