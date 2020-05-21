@@ -74,7 +74,7 @@ init.prototype.getUserInfo = function () {
     version: ""
   };
 
-  return HTTP('post', '/workwx-api/workwechat/getWorkWXUserByCode', params)
+  return HTTP('post', '/user-center/security/user/loginWX', params)
 };
 
 export default init;
