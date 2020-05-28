@@ -30,7 +30,7 @@ export default {
       features: null,
     }
   },
-  created () {
+  async created () {
 
     try {
 

@@ -1,5 +1,5 @@
 import { HTTP } from './request';
-import { paramsHandler } from '../utils/publicFn'
+import { paramsHandler } from '../utils/publicFn';
 
 const LOCAL_URL = {}
 if (process.env.VUE_APP_HOST === 'dev') LOCAL_URL.baseURL = process.env.VUE_APP_PROXY;
