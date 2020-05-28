@@ -38,7 +38,7 @@ export default {
       const corpId = getUrlParams('state');
       initSDK(this.INSIDE_APP_NAME, corpId, apiList); // 注册SDK
 
-      let { result } = getUserInfo(this.INSIDE_APP_NAME); // 获取用户信息
+      let { result } = await getUserInfo(this.INSIDE_APP_NAME); // 获取用户信息
       if (!result) throw('用户信息获取失败');
       this.$store.commit('SAVE_USER_INFO', result);
 
