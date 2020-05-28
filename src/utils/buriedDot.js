@@ -16,9 +16,9 @@ function BuriedDot (router, cb, leaveTime = 60000) {
   let closeTime = 0;
   let firstLoadTime = getNowDate();
 
-  window.onload = () => {
-    console.log('113');
-  }
+  // window.onload = () => {
+  //   console.log('113');
+  // }
 
   // console.log(window.navigator); // 浏览器属性
   // console.log(window.performance); // 网络属性

@@ -53,7 +53,7 @@ import i18n from './i18n'
 // document.title = i18n.t('pageTitle');
 
 import vConsole from 'vconsole'
-if (process.env.VUE_APP_HOST !== 'prod') const vconsole = new vConsole();
+if (process.env.VUE_APP_HOST !== 'prod') new vConsole();
 
 // 埋点使用方法
 import BuriedDot from './utils/buriedDot';

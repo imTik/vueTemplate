@@ -1,11 +1,6 @@
 import { HTTP } from '../api/request';
-import { getUrlParams } from './publicFn';
+import { getUrlParams, paramsHandler } from './publicFn';
 import { errHandler } from './ErrorHandler';
-
-function init (appName = '', insideAppName = '') {
-  this.appName = appName;
-  this.insideAppName = insideAppName;
-};
 
 // 获取url
 function getUrlNoHash () {
@@ -20,21 +15,18 @@ function getUrlNoHash () {
 };
 
 // 初始化SDK
-export async function initSDK (appName, insideAppName, corpId, apiList) {
+export async function initSDK (insideAppName, corpId, apiList) {
 
   try {
     let params = {
-      appName: appName,
-      format: "",
-      param: {
-        appName: insideAppName,
-        type: 0,
-        url: getUrlNoHash(),
-      },
-      version: ""
+      appName: insideAppName,
+      type: 0,
+      url: getUrlNoHash(),
     };
+
+    console.log('*---', paramsHandler(params));
   
-    let { result } = await HTTP('post', '/workwx-api/workwechat/getSignatureByApp', params);
+    let { result } = await HTTP('post', '/workwx-api/workwechat/getSignatureByApp', paramsHandler(params));
     if (!result) throw('sdk注册失败');
 
     let {timestamp, noncestr, signature} = result;
@@ -56,24 +48,16 @@ export async function initSDK (appName, insideAppName, corpId, apiList) {
 }
 
 // 获取用户数据
-export async function getUserInfo (appName, insideAppName) {
+export async function getUserInfo (insideAppName) {
 
   let code = getUrlParams('code');
   let params = {
-    appName: appName,
-    format: "json",
-    param: {
-      appName: insideAppName,
-      code: code,
-      dept: true
-    },
-    sign: "",
-    source: "",
-    timestamp: "",
-    version: ""
+    appName: insideAppName,
+    code: code,
+    dept: true
   };
 
-  return await HTTP('post', '/user-center/security/user/loginWX', params);
+  return await HTTP('post', '/user-center/security/user/loginWX', paramsHandler(params));
 };
 
 export function checkApi (api, sdk, callback) {

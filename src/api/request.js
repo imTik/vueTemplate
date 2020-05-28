@@ -35,9 +35,7 @@ function HTTP(method, url, params = '', userConfig) {
         config.headers['clientInfo'] = getClientInfo()
       }
 
-      if (userConfig) {
-        Object.assign(config, userConfig);
-      }
+      if (userConfig) Object.assign(config, userConfig);
 
       setParams(config);
       return config;
@@ -66,9 +64,7 @@ function HTTP(method, url, params = '', userConfig) {
       if (code !== 0) errHandler(code, response.data.message);
       return response.data;
       
-    },
-    // error => errHandler(error)
-    // error => Promise.reject(error) // 旧方法
+    }
   )
 
   return axiosInstance();

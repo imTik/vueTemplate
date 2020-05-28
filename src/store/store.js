@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import localFn from '../utils/localStorageFn'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import localFn from '../utils/localStorageFn';
+import packageConfig from '../../package';
 
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    appName: 'TourRoadmap',
+    appName: packageConfig.name,
     insideAppName: 'questionnaire',
 
     keepAliveLists: [],

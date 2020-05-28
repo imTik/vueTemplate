@@ -1,4 +1,5 @@
 // import pako from 'pako';
+import packageConfig from '../../package';
 
 // 手机正则
 export function isPhone (phone) {
@@ -80,6 +81,19 @@ export function dataToForm (d) {
   }
   return _form;
 };
+
+// 网络请求参数处理
+export function paramsHandler (params) {
+  return {
+    appName: packageConfig.name,
+    format: '',
+    param: params,
+    sign: '',
+    source: '',
+    timestamp: getNowDate('tamp'),
+    version: packageConfig.version
+  }
+}
 
 // pako 加密
 // export function pakoEncrypt (data) {

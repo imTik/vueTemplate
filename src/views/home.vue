@@ -20,7 +20,6 @@ export default {
   name: 'home',
   computed: {
     ...mapGetters([
-      'APP_NAME',
       'INSIDE_APP_NAME',
     ])
   },
@@ -34,13 +33,12 @@ export default {
   created () {
 
     try {
-      this.features = new BasicFeatures(this.APP_NAME, this.INSIDE_APP_NAME);
 
       const apiList = ['startWifi']; // 具体参考企业微信API
       const corpId = getUrlParams('state');
-      initSDK(this.APP_NAME, this.INSIDE_APP_NAME, corpId, apiList); // 注册SDK
+      initSDK(this.INSIDE_APP_NAME, corpId, apiList); // 注册SDK
 
-      let { result } = getUserInfo(this.APP_NAME, this.INSIDE_APP_NAME); // 获取用户信息
+      let { result } = getUserInfo(this.INSIDE_APP_NAME); // 获取用户信息
       if (!result) throw('用户信息获取失败');
       this.$store.commit('SAVE_USER_INFO', result);
 
