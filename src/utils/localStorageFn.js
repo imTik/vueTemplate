@@ -12,6 +12,9 @@ const FN = {
     localStorage.setItem('USER_INFO', JSON.stringify(data));
   },
 
+  saveToken: function (data) {
+    localStorage.setItem('TOKEN', data);
+  }
 
 }
 

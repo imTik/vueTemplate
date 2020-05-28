@@ -23,6 +23,11 @@ export default new Vuex.Store({
       localFn.saveUserInfo(data);
     },
 
+    SAVE_TOKEN (state, data) {
+      state.token = data;
+      localFn.saveToken(data);
+    },
+
     // 保存组件缓存列表
     SAVE_KEEP_ALIVE (state, data) {
       if (!data.status) return;
@@ -49,7 +54,7 @@ export default new Vuex.Store({
     },
 
     TOKEN: state => {
-      if(!state.token) state.token = localFn.getLocalData('TOKEN');
+      if(!state.token) state.token = localFn.getLocalData('TOKEN', true);
       return state.token;
     },
 

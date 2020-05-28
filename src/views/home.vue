@@ -41,6 +41,7 @@ export default {
       let { result } = await getUserInfo(this.INSIDE_APP_NAME); // 获取用户信息
       if (!result) throw('用户信息获取失败');
       this.$store.commit('SAVE_USER_INFO', result);
+      this.$store.commit('SAVE_TOKEN', result.token);
 
     }
     catch (e) {

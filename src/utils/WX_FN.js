@@ -48,7 +48,7 @@ export async function initSDK (insideAppName, corpId, apiList) {
 }
 
 // 获取用户数据
-export async function getUserInfo (insideAppName) {
+export function getUserInfo (insideAppName) {
 
   let code = getUrlParams('code');
   let params = {
@@ -57,7 +57,7 @@ export async function getUserInfo (insideAppName) {
     dept: true
   };
 
-  return await HTTP('post', '/user-center/security/user/loginWX', paramsHandler(params));
+  return HTTP('post', '/user-center/security/user/loginWX', paramsHandler(params));
 };
 
 export function checkApi (api, sdk, callback) {
