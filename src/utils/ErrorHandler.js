@@ -6,15 +6,17 @@ const errCode = {
 };
 
 export function errHandler (e, msg = null) {
+  // errCode自定义错误提示
   if (errCode[e]) {
     Toast(errCode[e]);
 
   } else {
+    // 外部输入错误提示: throw('xxxx');
     if (typeof e === 'string') {
       Toast(e);
 
     } else {
-      
+      // 系统错误类型
       const errTips = String(e);
       const code400 = 'code 400';  // 请求语法错误
       const code404 = 'code 404';  // 地址错误
@@ -33,6 +35,7 @@ export function errHandler (e, msg = null) {
       } else if (errTips.indexOf(timeout) !== -1) {
         Toast('请求超时.');
       } else {
+        // msg 用与请求错误 errHandler(code, response.data.message); (与errCode有一点重复)
         msg ? Toast(msg) :  Toast('系统开小差了...');
       };
     }

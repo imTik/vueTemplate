@@ -13,8 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-// import { checkApi } from '../utils/WX_API_CHECK';
-import BasicFeatures from '@/utils/WX_BASIC_FEATURES';
+import { initSDK, getUserInfo } from '@/utils/WX_FN';
 import { getUrlParams } from '../utils/publicFn';
 
 export default {
@@ -39,15 +38,12 @@ export default {
 
       const apiList = ['startWifi']; // 具体参考企业微信API
       const corpId = getUrlParams('state');
-      this.features.initSDK(corpId, apiList); // 注册SDK
+      initSDK(this.APP_NAME, this.INSIDE_APP_NAME, corpId, apiList); // 注册SDK
 
-      // 获取用户信息
-      this.features.getUserInfo().then(res => {
-        console.log('用户信息', res);
-        if (res && res.result) {
-          this.$store.commit('SAVE_USER_INFO', res.result);
-        }
-      });
+      let { result } = getUserInfo(this.APP_NAME, this.INSIDE_APP_NAME); // 获取用户信息
+      if (!result) throw('用户信息获取失败');
+      this.$store.commit('SAVE_USER_INFO', result);
+
     }
     catch (e) {
       this.errHandler(e);

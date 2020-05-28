@@ -47,10 +47,13 @@ function HTTP(method, url, params = '', userConfig) {
 
   function setParams(c) {
     let method = c.method.toLocaleUpperCase();
-    if (method === 'POST') {
-      c.data = params;
-    } else if (method === 'GET') {
-      c.params = params;
+    switch (method) {
+      case 'POST': 
+        c.data = params;
+        break;
+      case 'GET':
+        c.params = params;
+        break;
     }
   }
 
