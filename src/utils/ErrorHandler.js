@@ -5,7 +5,7 @@ const errCode = {
   '-1': '系统错误'
 };
 
-export function errHandler (e, msg = null) {
+export function errHandler (e) {
   // errCode自定义错误提示
   if (errCode[e]) {
     Toast(errCode[e]);
@@ -35,8 +35,7 @@ export function errHandler (e, msg = null) {
       } else if (errTips.indexOf(timeout) !== -1) {
         Toast('请求超时.');
       } else {
-        // msg 用与请求错误 errHandler(code, response.data.message); (与errCode有一点重复)
-        msg ? Toast(msg) :  Toast('系统开小差了...');
+        Toast('系统开小差了...');
       };
     }
   }
