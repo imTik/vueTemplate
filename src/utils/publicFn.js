@@ -58,7 +58,7 @@ export function getUrlParams (name) {
     const urlSplits = window.location.href.split('?');
     if (urlSplits.length <= 1) throw('URL参数截取错误');
     
-    let hrefParams = window.location.href.split('?')[1].split('#/')[0];
+    let hrefParams = urlSplits[1].split('#/')[0];
     if (hrefParams) {
       let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
       let dataArr = hrefParams.match(reg);
