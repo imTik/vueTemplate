@@ -23,8 +23,6 @@ export async function initSDK (insideAppName, corpId, apiList) {
       type: 0,
       url: getUrlNoHash(),
     };
-
-    console.log('*---', paramsHandler(params));
   
     let { result } = await HTTP('post', '/workwx-api/workwechat/getSignatureByApp', paramsHandler(params));
     if (!result) throw('sdk注册失败');
@@ -69,9 +67,7 @@ export function checkApi (api, sdk, callback) {
     sdk.checkJsApi({
       jsApiList: [api],
       success: res => {
-        if (!res.checkResult[api]) {
-          throw('微信JS-SDK不支持该功能');
-        };
+        if (!res.checkResult[api]) throw('微信JS-SDK不支持该功能');
         sdk[api](callback);
       }
     });

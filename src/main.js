@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/router';
 import store from './store/store';
-import API from './api/API';
 
 // ui框架引入
 import { 
@@ -18,8 +17,6 @@ import {
   Uploader,
   DropdownMenu, 
   DropdownItem,
-  SwipeCell,
-  ImagePreview
 } from 'vant'
 import 'vant/lib/index.css'
 Vue
@@ -34,11 +31,11 @@ Vue
 .use(Radio)
 .use(Uploader)
 .use(DropdownMenu)
-.use(DropdownItem)
-.use(SwipeCell)
-.use(ImagePreview);
+.use(DropdownItem);
 
 Vue.config.productionTip = false;
+
+import API from './api/API';
 Vue.prototype.$http = API;
 
 // 全局组件
