@@ -1,6 +1,5 @@
 import { mapGetters } from 'vuex'
 import { errHandler } from './ErrorHandler'
-import { Toast } from 'vant';
 const mixin = {
   data() {
     return {
@@ -10,7 +9,6 @@ const mixin = {
   computed: {
     ...mapGetters([
       'USER_INFO', 
-      'STORE_INFO',
     ]),
   },
   methods: {
