@@ -1,21 +1,11 @@
-const FN = {
-
-  // 获取localStorage数据
-  getLocalData: function (key, isString = false) {
-    let _detail = '';
-    isString ? _detail = localStorage.getItem(key) : _detail = JSON.parse(localStorage.getItem(key));
-    return _detail;
+const LOCAL = {
+  get: function (key) {
+    return JSON.parse(localStorage.getItem(key));
   },
 
-  // 保存用户信息
-  saveUserInfo: function (data) {
-    localStorage.setItem('USER_INFO', JSON.stringify(data));
+  set: function (key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
   },
-
-  saveToken: function (data) {
-    localStorage.setItem('TOKEN', data);
-  }
-
 }
 
-export default FN;
+export default LOCAL;

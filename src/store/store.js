@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import localFn from '../utils/localStorageFn';
+import LOCAL from '../utils/localStorageFn';
 import packageConfig from '../../package';
 
 Vue.use(Vuex)
@@ -20,12 +20,12 @@ export default new Vuex.Store({
     // 保存用户信息
     SAVE_USER_INFO (state, data) {
       state.userInfo = data;
-      localFn.saveUserInfo(data);
+      LOCAL.set('USER_INFO', data);
     },
 
     SAVE_TOKEN (state, data) {
       state.token = data;
-      localFn.saveToken(data);
+      LOCAL.set('TOKEN', data);
     },
 
     // 保存组件缓存列表
@@ -49,12 +49,12 @@ export default new Vuex.Store({
     KEEP_ALIVE_LISTS: state => state.keepAliveLists,
 
     USER_INFO: state => {
-      if(!state.userInfo) state.userInfo = localFn.getLocalData('USER_INFO');
+      if(!state.userInfo) state.userInfo = LOCAL.get('USER_INFO');
       return state.userInfo;
     },
 
     TOKEN: state => {
-      if(!state.token) state.token = localFn.getLocalData('TOKEN', true);
+      if(!state.token) state.token = LOCAL.get('TOKEN');
       return state.token;
     },
 
