@@ -22,14 +22,11 @@ export default {
   data () {
     return {
       loading: false,
-      wifiLists: [],
-      features: null,
     }
   },
   async created () {
 
     try {
-
       const apiList = ['startWifi']; // 具体参考企业微信API
       const corpId = getUrlParams('state');
       initSDK(this.INSIDE_APP_NAME, corpId, apiList); // 注册SDK

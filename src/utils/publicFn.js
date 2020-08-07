@@ -2,21 +2,22 @@
 import packageConfig from '../../package';
 
 // 手机正则
-export function isPhone (phone) {
+export function isPhone(phone) {
   let pattern = /^1(3|4|5|7|6|8|9)\d{9}$/;
   return pattern.test(phone);
-};
+}
 
 // 整数正则
-export function isInteger (number) {
+export function isInteger(number) {
   let pattern = /^[0-9]*[1-9][0-9]*$/;
   return pattern.test(number);
-};
+}
 
 /**
  * @param {String} type FULL(完整日期)/YMD(日期))/YM(年月)/T(时间)/TAMP(时间戳)
  */
-export function getNowDate(type = 'FULL', tamp) {
+export function getNowDate(type = 'FULL', tamp, zone) {
+  zone ? tamp = getZoneTamp(zone) : tamp = null;
   const _date = tamp ? new Date(tamp) : new Date();
   let Y = _date.getFullYear();
   let M = _date.getMonth() + 1;
@@ -24,7 +25,7 @@ export function getNowDate(type = 'FULL', tamp) {
   let H = _date.getHours();
   let Mi = _date.getMinutes();
   let S = _date.getSeconds();
-  
+
   if (M < 10) M = '0' + M;
   if (D < 10) D = '0' + D;
   if (H < 10) H = '0' + H;
@@ -43,47 +44,55 @@ export function getNowDate(type = 'FULL', tamp) {
     } else if (type.toUpperCase() === 'TAMP') {
       return Date.parse(_date);
     } else {
-      throw('getNowDate调用错误，提示：错误的传值，参数参考: "FULL/YMD/YM/T/TAMP"');
+      throw 'getNowDate调用错误，提示：错误的传值，参数参考: "FULL/YMD/YM/T/TAMP"';
     }
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err);
   }
-};
+}
+
+export function getZoneTamp(zone = 0) {
+  const _date = new Date();
+  const oneMinute = 1000 * 60;
+  const timeZone = _date.getTimezoneOffset();
+  const localTamp = Date.parse(_date);
+  const localOffset = timeZone * oneMinute;
+  const utc = localTamp - localOffset;
+  const zoneOffsetTime = -zone * 60 * oneMinute;
+  const zoneTamp = utc + zoneOffsetTime;
+  return zoneTamp;
+}
 
 // 从url截取参数
-export function getUrlParams (name) {
+export function getUrlParams(name) {
   try {
-
     const urlSplits = window.location.href.split('?');
-    if (urlSplits.length <= 1) throw('URL参数截取错误');
-    
+    if (urlSplits.length <= 1) throw 'URL参数截取错误';
+
     let hrefParams = urlSplits[1].split('#/')[0];
     if (hrefParams) {
-      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
       let dataArr = hrefParams.match(reg);
       return dataArr[2];
-
     } else {
-      throw('从URL获取' + name + '错误');
+      throw '从URL获取' + name + '错误';
     }
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err);
   }
-};
+}
 
 // 对象数据转Form格式
-export function dataToForm (d) {
+export function dataToForm(d) {
   let _form = new FormData();
-  for(let i in d) {
+  for (let i in d) {
     _form.append(i, d[i]);
   }
   return _form;
-};
+}
 
 // 网络请求参数处理
-export function paramsHandler (params) {
+export function paramsHandler(params) {
   return {
     appName: packageConfig.name,
     format: '',
@@ -92,7 +101,7 @@ export function paramsHandler (params) {
     source: '',
     timestamp: getNowDate('tamp'),
     version: packageConfig.version
-  }
+  };
 }
 
 // pako 加密
