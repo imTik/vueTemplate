@@ -4,7 +4,7 @@ module.exports = {
   lintOnSave: false,
 
   publicPath: '/you_project_name',
-  outputDir: process.env.outputDir,
+  outputDir: 'you_project_name',
 
   productionSourceMap: false,
 
@@ -12,32 +12,32 @@ module.exports = {
     // host: 'localhost',
     port: 8080,
     https: false,
-    open:true,
+    open: true,
     disableHostCheck: true,
     proxy: {
-      [process.env.VUE_APP_PROXY]: {
-        target: process.env.VUE_APP_PROXY_URL,
+      '/local': {
+        target: 'http://192.168.35.107:8061',
         ws: true,
         changOrigin: true,
         pathRewrite: {
-          ['^' + process.env.VUE_APP_PROXY]: ''
+          '^/local': ''
         }
-      },
+      }
     }
   },
 
   chainWebpack: config => {
     config.module
-    .rule('images')
-    .use('url-loader')
-    .loader('url-loader')
-    .tap(options => Object.assign(options, { limit: 10240 }))
+      .rule('images')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { limit: 10240 }));
   },
 
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
-      patterns: [path.resolve(__dirname, "./src/global.less")] 
+      patterns: [path.resolve(__dirname, './src/global.less')]
     },
     i18n: {
       locale: 'en',
@@ -46,4 +46,4 @@ module.exports = {
       enableInSFC: false
     }
   }
-}
+};
