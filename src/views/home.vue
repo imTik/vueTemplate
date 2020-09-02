@@ -9,7 +9,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { initSDK, getUserInfo } from '@/utils/WX_FN';
+import { initSDK, getUserInfo } from '../utils/WX_FN';
 import { getUrlParams } from '../utils/publicFn';
 
 export default {
