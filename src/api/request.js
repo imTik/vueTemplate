@@ -1,7 +1,7 @@
 import axios from 'axios';
-import store from '@/store/store';
+import store from '../store/store';
 import { errHandler } from '../utils/ErrorHandler';
-import { getClientInfo } from '@/utils/client_info';
+import { getClientInfo } from '../utils/client_info';
 import SERVER from './httpConfige';
 // import { Toast } from 'vant'
 
