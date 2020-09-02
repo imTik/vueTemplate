@@ -92,7 +92,7 @@ export function dataToForm(d) {
 }
 
 // 网络请求参数处理
-export function paramsHandler(params) {
+export function paramFormat(params) {
   return {
     appName: packageConfig.name,
     format: '',

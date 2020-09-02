@@ -1,5 +1,5 @@
 import HTTP from './Http';
-import { paramsHandler } from '../utils/publicFn';
+import { paramFormat } from '../utils/publicFn';
 
 const LOCAL_URL = {};
 if (process.env.VUE_APP_HOST === 'dev') LOCAL_URL.baseURL = '/local';
@@ -7,10 +7,10 @@ if (process.env.VUE_APP_HOST === 'dev') LOCAL_URL.baseURL = '/local';
 export function getSignatureByApp(params) {
   return HTTP.post(
     '/workwx-api/workwechat/getSignatureByApp',
-    paramsHandler(params)
+    paramFormat(params)
   );
 }
 
 export function loginWX(params) {
-  return HTTP.post('/user-center/security/user/loginWX', paramsHandler(params));
+  return HTTP.post('/user-center/security/user/loginWX', paramFormat(params));
 }
