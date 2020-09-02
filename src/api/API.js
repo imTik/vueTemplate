@@ -2,8 +2,7 @@ import HTTP from './Http';
 import { paramsHandler } from '../utils/publicFn';
 
 const LOCAL_URL = {};
-if (process.env.VUE_APP_HOST === 'dev')
-  LOCAL_URL.baseURL = process.env.VUE_APP_PROXY;
+if (process.env.VUE_APP_HOST === 'dev') LOCAL_URL.baseURL = '/local';
 
 export function getSignatureByApp(params) {
   return HTTP.post(

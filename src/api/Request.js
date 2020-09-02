@@ -5,6 +5,7 @@ import { getClientInfo } from './client_info';
 import SERVER from './httpConfige';
 // import { Toast } from 'vant'
 
+
 axios.defaults.baseURL = SERVER.WECHAT;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 // 'application/json' / 'multipart/form-data' / 'application/x-www-form-urlencoded'
@@ -14,7 +15,6 @@ const axiosInstance = axios.create();
 // 请求响应
 axiosInstance.interceptors.request.use(
   config => {
-    config.baseURL = SERVER.WECHAT;
     config.timeout = 120000;
 
     // 用户信息采集
