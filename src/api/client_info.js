@@ -1,5 +1,5 @@
 import packageConfig from '../../package';
-import store from '@/store/store';
+import store from '../store/store';
 const Base64 = require('js-base64').Base64;
 
 export function getClientInfo() {
