@@ -8,8 +8,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { initSDK, getUserInfo } from '../utils/WX_FN';
-import { getUrlParams, getNowDate, verify } from '../utils/publicFn';
-import myApp from '../utils/myApp';
+import { getUrlParams } from '../utils/publicFn';
 
 export default {
   name: 'home',
