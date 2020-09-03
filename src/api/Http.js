@@ -1,16 +1,16 @@
 import Request from './Request';
 
-const HTTP = {
-  post: (url, data, config) => {
+const HTTP = (function() {
+  function post(url, data, config) {
     Request({
       method: 'POST',
       url,
       data,
       ...config
     });
-  },
+  }
 
-  get: (url, data, config) => {
+  function get(url, data, config) {
     Request({
       method: 'GET',
       url,
@@ -18,6 +18,11 @@ const HTTP = {
       ...config
     });
   }
-};
+
+  return {
+    post: post,
+    get: get
+  };
+})();
 
 export default HTTP;

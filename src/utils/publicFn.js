@@ -1,23 +1,26 @@
 // import pako from 'pako';
 import packageConfig from '../../package';
 
-// 手机正则
-export function isPhone(phone) {
-  let pattern = /^1(3|4|5|7|6|8|9)\d{9}$/;
-  return pattern.test(phone);
-}
+const RULE_MAP = {
+  phone: /^1(3|4|5|7|6|8|9)\d{9}$/, // 手机
+  integer: /^[0-9]*[1-9][0-9]*$/ // 整数
+};
 
-// 整数正则
-export function isInteger(number) {
-  let pattern = /^[0-9]*[1-9][0-9]*$/;
-  return pattern.test(number);
+export function verify(r, v) {
+  try {
+    if (!RULE_MAP[r]) throw '请输入正确的规则名';
+    return RULE_MAP[r].test(v);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 /**
  * @param {String} type FULL(完整日期)/YMD(日期))/YM(年月)/T(时间)/TAMP(时间戳)
  */
 export function getNowDate(type = 'FULL', tamp, zone) {
-  zone ? tamp = getZoneTamp(zone) : tamp = null;
+  zone ? (tamp = getZoneTamp(zone)) : (tamp = null);
+
   const _date = tamp ? new Date(tamp) : new Date();
   let Y = _date.getFullYear();
   let M = _date.getMonth() + 1;
@@ -32,17 +35,17 @@ export function getNowDate(type = 'FULL', tamp, zone) {
   if (Mi < 10) Mi = '0' + Mi;
   if (S < 10) S = '0' + S;
 
+  const MODE = {
+    TAMP: Date.parse(_date),
+    FULL: Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S,
+    YMD: Y + '-' + M + '-' + D,
+    YM: Y + '-' + M,
+    T: H + ':' + Mi + ':' + S
+  };
+  type = type.toUpperCase();
   try {
-    if (type.toUpperCase() === 'FULL') {
-      return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
-    } else if (type.toUpperCase() === 'YMD') {
-      return Y + '-' + M + '-' + D;
-    } else if (type.toUpperCase() === 'YM') {
-      return Y + '-' + M;
-    } else if (type.toUpperCase() === 'T') {
-      return H + ':' + Mi + ':' + S;
-    } else if (type.toUpperCase() === 'TAMP') {
-      return Date.parse(_date);
+    if (MODE[type]) {
+      return MODE[type];
     } else {
       throw 'getNowDate调用错误，提示：错误的传值，参数参考: "FULL/YMD/YM/T/TAMP"';
     }

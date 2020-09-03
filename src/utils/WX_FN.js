@@ -57,9 +57,7 @@ export function getUserInfo(insideAppName) {
 
 export function checkApi(api, sdk, callback) {
   try {
-    if (!sdk) {
-      throw '微信JS-SDK注册失败,无法使用';
-    }
+    if (!sdk) throw '微信JS-SDK注册失败,无法使用';
 
     sdk.checkJsApi({
       jsApiList: [api],
