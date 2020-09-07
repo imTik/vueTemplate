@@ -34,8 +34,6 @@ Vue.use(Button)
 
 Vue.config.productionTip = false;
 
-import './utils/myApp';
-
 // 全局组件
 import globalComponent from './utils/components';
 Vue.use(globalComponent);
