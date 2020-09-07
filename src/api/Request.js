@@ -2,9 +2,8 @@ import axios from 'axios';
 import store from '../store/store';
 import { errHandler } from '../utils/ErrorHandler';
 import { getClientInfo } from './client_info';
-import SERVER from './httpConfige';
+import SERVER from './serverConfig';
 // import { Toast } from 'vant'
-
 
 axios.defaults.baseURL = SERVER.WECHAT;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -28,7 +27,6 @@ axiosInstance.interceptors.request.use(
     setParams(config);
     return config;
   }
-  // error => errHandler(error)
 );
 
 function setParams(c) {
@@ -47,7 +45,6 @@ axiosInstance.interceptors.response.use(
     if (code !== 0) errHandler(code);
     return response.data;
   },
-  error => errHandler(error)
 );
 
 export default axiosInstance;
