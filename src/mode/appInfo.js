@@ -9,14 +9,7 @@ let getApp = function(config) {
   };
   appInfo = Object.assign(appInfo, config);
 
-  function set(key, val) {
-    appInfo[key] = val;
-  }
-
-  return {
-    info: appInfo,
-    set
-  };
+  return appInfo;
 };
 
 let createApp = getSingleton(getApp);
