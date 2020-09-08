@@ -107,6 +107,13 @@ export function paramFormat(params) {
   };
 }
 
+// 继承父函数的prototype属性
+export function Extend(father) {
+  function F() {}
+  F.prototype = father.prototype;
+  return new F();
+}
+
 // pako 加密
 // export function pakoEncrypt (data) {
 //   let dataStr = JSON.stringify(data);
