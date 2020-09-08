@@ -1,6 +1,7 @@
 import { getSignatureByApp, loginWX } from '../api/API';
 import { getUrlParams } from './publicFn';
 import { errHandler } from './ErrorHandler';
+import store from '../store/store';
 
 // 获取url
 function getUrlNoHash() {
@@ -15,10 +16,10 @@ function getUrlNoHash() {
 }
 
 // 初始化SDK
-export async function initSDK(insideAppName, corpId, apiList) {
+export async function initSDK(corpId, apiList) {
   try {
     let params = {
-      appName: insideAppName,
+      appName: store.getters.INSIDE_APP_NAME,
       type: 0,
       url: getUrlNoHash()
     };
@@ -44,10 +45,10 @@ export async function initSDK(insideAppName, corpId, apiList) {
 }
 
 // 获取用户数据
-export function getUserInfo(insideAppName) {
+export function getUserInfo() {
   let code = getUrlParams('code');
   let params = {
-    appName: insideAppName,
+    appName: store.getters.INSIDE_APP_NAME,
     code: code,
     dept: true
   };
