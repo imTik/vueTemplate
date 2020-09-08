@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import LOCAL from '../utils/localStorageFn';
-import packageConfig from '../../package';
+// import packageConfig from '../../package';
 
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    appName: packageConfig.name,
+    // appName: packageConfig.name,
     insideAppName: 'questionnaire',
 
     keepAliveLists: [],
@@ -43,7 +43,7 @@ export default new Vuex.Store({
   },
   getters: {
 
-    APP_NAME: state => state.appName,
+    // APP_NAME: state => state.appName,
     INSIDE_APP_NAME: state => state.insideAppName,
     
     KEEP_ALIVE_LISTS: state => state.keepAliveLists,

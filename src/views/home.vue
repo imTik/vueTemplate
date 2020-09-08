@@ -1,6 +1,6 @@
 <template>
   <div class="home-main">
-    <h1 data-dot="title_point" @click="alertMessage">Vue Front 项目模板</h1>
+    <h1 data-dot="title_point">Vue Front 项目模板</h1>
     <global-loading mask="small" v-show="loading" />
   </div>
 </template>
@@ -40,12 +40,7 @@ export default {
     }
 
   },
-  methods: {
-    alertMessage() {
-      appInfo.set('code', 'NyC9tId5ZZkUxt3lcDa7nwAqhL-iAIpePLuWHxTmfv0');
-      console.log(appInfo.info);
-    }
-  }
+  methods: {}
 }
 </script>
 
