@@ -5,8 +5,8 @@ window.onload = () => {
 
     const ORIGIN =
       ENV === 'production'
-        ? 'https://wechat.walmartmobile.cn'
-        : 'https://wechat-qa.walmartmobile.cn';
+        ? 'https://wechat.cn'
+        : 'https://wechat-qa.cn';
 
     console.log('message --> ', res);
     console.log('origin --> ', res.origin, ORIGIN);
