@@ -2,7 +2,7 @@ import Request from './Request';
 
 const HTTP = (function() {
   function post(url, data, config) {
-    Request({
+    return Request({
       method: 'POST',
       url,
       data,
@@ -11,7 +11,7 @@ const HTTP = (function() {
   }
 
   function get(url, data, config) {
-    Request({
+    return Request({
       method: 'GET',
       url,
       data,
