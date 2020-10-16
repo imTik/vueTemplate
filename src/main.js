@@ -34,6 +34,9 @@ Vue.use(Button)
 
 Vue.config.productionTip = false;
 
+import alertTips from './components/alertTips';
+Vue.prototype.$alertTips = alertTips;
+
 // 全局组件
 import globalComponent from './utils/components';
 Vue.use(globalComponent);
