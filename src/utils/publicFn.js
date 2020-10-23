@@ -18,9 +18,7 @@ export function verify(r, v) {
 /**
  * @param {String} type FULL(完整日期)/YMD(日期))/YM(年月)/T(时间)/TAMP(时间戳)
  */
-export function getNowDate(type = 'FULL', tamp, zone) {
-  zone ? (tamp = getZoneTamp(zone)) : (tamp = null);
-
+export function getNowDate(type = 'FULL', tamp) {
   const _date = tamp ? new Date(tamp) : new Date();
   let Y = _date.getFullYear();
   let M = _date.getMonth() + 1;
@@ -112,6 +110,20 @@ export function Extend(father) {
   function F() {}
   F.prototype = father.prototype;
   return new F();
+}
+
+//图片转成Buffer
+export function dataURItoBlob(dataURI) {
+  var byteString = atob(dataURI.split(',')[1]);
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]; //图片格式类型jpg\jpeg
+  var ab = new ArrayBuffer(byteString.length);
+  var ia = new Uint8Array(ab);
+  for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], {
+      type: mimeString
+  });
 }
 
 // pako 加密
