@@ -34,7 +34,7 @@ export async function initSDK(corpId, apiList) {
       debug: false,
       appId: corpId, // 必填，企业微信的corpID
       timestamp,
-      noncestr,
+      nonceStr: noncestr,
       signature,
       jsApiList: apiList
     });
