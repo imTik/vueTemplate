@@ -1,4 +1,5 @@
 const path = require('path');
+const Timestamp = new Date().getTime();
 module.exports = {
   // 关闭eslint
   lintOnSave: false,
@@ -7,6 +8,23 @@ module.exports = {
   outputDir: 'you_project_name',
 
   productionSourceMap: false,
+
+  // 设置入口文件 每次打包加上时间戳防止缓存
+  configureWebpack: {
+    output: {
+      filename: `js/[name].[hash:4].${Timestamp}.js`,
+      chunkFilename: `js/[name].${Timestamp}.js`,
+    }
+  },
+
+  css: {
+    extract: {
+      filename: `css/[name].[hash:4].${Timestamp}.css`,
+      chunkFilename: `css/[name].${Timestamp}.css`,
+    },
+    sourceMap: false,
+  },
+
 
   devServer: {
     // host: 'localhost',
