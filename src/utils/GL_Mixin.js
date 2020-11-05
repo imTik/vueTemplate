@@ -1,6 +1,6 @@
 import { mapGetters } from 'vuex'
 import { errHandler } from './ErrorHandler'
-const mixin = {
+const GL_Mixin = {
   data() {
     return {
 
@@ -32,4 +32,4 @@ const mixin = {
   }
 }
 
-export default mixin;
+export default GL_Mixin;
