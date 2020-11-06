@@ -38,13 +38,19 @@ function setParams(c) {
 }
 
 // 响应拦截
-axiosInstance.interceptors.response.use(
-  response => {
-    // ...自定义code失败提示
+axiosInstance.interceptors.response.use(response => {
+  // ...自定义code失败提示
+  let format = response.config.headers.format;
+  if (format === 'blob') {
+    let urlArr = response.config.url.split('/');
+    let filename = urlArr[urlArr.length - 1];
+    let file = new File([response.data], filename);
+    return file;
+  } else {
     let code = Number(response.data.code);
     if (code !== 0) errHandler(code);
     return response.data;
-  },
-);
+  }
+});
 
 export default axiosInstance;
