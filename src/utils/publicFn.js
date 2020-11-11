@@ -41,15 +41,7 @@ export function getNowDate(type = 'FULL', tamp) {
     T: H + ':' + Mi + ':' + S
   };
   type = type.toUpperCase();
-  try {
-    if (MODE[type]) {
-      return MODE[type];
-    } else {
-      throw 'getNowDate调用错误，提示：错误的传值，参数参考: "FULL/YMD/YM/T/TAMP"';
-    }
-  } catch (err) {
-    console.error(err);
-  }
+  return MODE[type] ? MODE[type] : null;
 }
 
 export function getZoneTamp(zone = 0) {
