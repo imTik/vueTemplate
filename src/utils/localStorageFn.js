@@ -6,6 +6,10 @@ const LOCAL = {
 
   set: function(key, data) {
     data && localStorage.setItem(key, JSON.stringify(data));
+  },
+
+  del: function(key) {
+    localStorage.removeItem(key);
   }
 };
 
