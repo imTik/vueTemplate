@@ -1,5 +1,6 @@
 // import pako from 'pako';
 import packageConfig from '../../package';
+import SERVER from '../api/serverConfig';
 
 const RULE_MAP = {
   phone: /^1(3|4|5|7|6|8|9)\d{9}$/, // 手机
@@ -85,9 +86,9 @@ export function dataToForm(d) {
 }
 
 // 网络请求参数处理
-export function paramFormat(params) {
-  return {
-    appName: packageConfig.name,
+export function reqModel(params, type = '') {
+  let _param = {
+    appName: store.getters.APP_NAME,
     format: '',
     param: params,
     sign: '',
@@ -95,6 +96,16 @@ export function paramFormat(params) {
     timestamp: getNowDate('tamp'),
     version: packageConfig.version
   };
+  type === 'sign' && (_param.sign = createdSign(_param));
+  return _param;
+}
+// 创建签名
+export function createdSign(p) {
+  let sha512 = SHA512.sha512;
+  let strA = p.appName + p.source + p.timestamp + p.format + p.version;
+  let staB = JSON.stringify(p.param);
+  let sign = sha512(SERVER.SECRET + strA + staB + SERVER.SECRET).toUpperCase();
+  return sign;
 }
 
 // 继承父函数的prototype属性
@@ -111,10 +122,10 @@ export function dataURItoBlob(dataURI) {
   var ab = new ArrayBuffer(byteString.length);
   var ia = new Uint8Array(ab);
   for (var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
+    ia[i] = byteString.charCodeAt(i);
   }
   return new Blob([ab], {
-      type: mimeString
+    type: mimeString
   });
 }
 
