@@ -99,15 +99,33 @@ export function reqModel(params, type = '') {
   type === 'sign' && (_param.sign = createdSign(_param));
   return _param;
 }
+
 // 创建签名
 export function createdSign(p) {
   let sha512 = SHA512.sha512;
   let strA = p.appName + p.source + p.timestamp + p.format + p.version;
-  let staB = JSON.stringify(p.param);
+  let staB = JSON.stringify(sortJson(p.param));
   let sign = sha512(SERVER.SECRET + strA + staB + SERVER.SECRET).toUpperCase();
   return sign;
 }
-
+function sortJson(obj) {
+  let type = Object.prototype.toString.call(obj).split(/\s/)[1].split(/\]/)[0];
+  if (type === 'Object') {
+    let newObj = {};
+    Object.keys(obj).sort().map(key => {
+      newObj[key] = sortJson(obj[key]);
+    });
+    return newObj;
+  }
+  if (type === 'Array') {
+    let newArr = [];
+    obj.map(key => {
+      newArr.push(sortJson(key));
+    });
+    return newArr;
+  }
+  return obj;
+}
 // 继承父函数的prototype属性
 export function Extend(father) {
   function F() {}
