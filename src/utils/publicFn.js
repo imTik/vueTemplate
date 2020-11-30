@@ -2,24 +2,61 @@
 import packageConfig from '../../package';
 import SERVER from '../api/serverConfig';
 
-const RULE_MAP = {
-  phone: /^1(3|4|5|7|6|8|9)\d{9}$/, // 手机
-  integer: /^[0-9]*[1-9][0-9]*$/ // 整数
-};
+// 正则校验
+export const REX_MAP = {
+  phone: function(val) {
+    let _reg = /^1(3|4|5|7|6|8|9)\d{9}$/;
+    return _reg.test(val);
+  },
 
-export function verify(r, v) {
-  try {
-    if (!RULE_MAP[r]) throw '请输入正确的规则名';
-    return RULE_MAP[r].test(v);
-  } catch (e) {
-    console.error(e);
+  integer: function(val) {
+    let _reg = /^[0-9]*[1-9][0-9]*$/;
+    return _reg.test(val);
+  },
+
+  email: function(val) {
+    let _reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    return _reg.test(val);
+  },
+
+  id: function(val) {
+    let _reg = /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/;
+    return _reg.test(val);
+  },
+
+  otherId: function(val) {
+    let _reg = /(^([a-zA-z]{1,2})([0-9]{7,8})$)/;
+    return _reg.test(val);
+  },
+
+  componeyId: function(val) {
+    if (
+      val.length === 15 ||
+      val.length === 17 ||
+      val.length === 18 ||
+      val.length === 20
+    ) {
+      if (val.length === 18) {
+        let regex = /^[0-9A-Z]+$/;
+        let regBusinessLicense = new RegExp('[IOZSV]');
+        return regex.test(val) && !regBusinessLicense.test(value)
+          ? true
+          : false;
+      } else {
+        let regex = /^[0-9A-Z]+$/;
+        return regex.test(val) ? true : false;
+      }
+    } else {
+      return false;
+    }
   }
-}
+};
 
 /**
  * @param {String} type FULL(完整日期)/YMD(日期))/YM(年月)/T(时间)/TAMP(时间戳)
  */
 export function getNowDate(type = 'FULL', tamp) {
+  if (tamp && typeof tamp === 'string') tamp = tamp.split('.')[0]; // 防止 2020-11-30T01:46:44.490+0000 格式的日期
   const _date = tamp ? new Date(tamp) : new Date();
   let Y = _date.getFullYear();
   let M = _date.getMonth() + 1;
@@ -126,6 +163,7 @@ function sortJson(obj) {
   }
   return obj;
 }
+
 // 继承父函数的prototype属性
 export function Extend(father) {
   function F() {}
