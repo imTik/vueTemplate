@@ -82,6 +82,16 @@ export function getNowDate(type = 'FULL', tamp) {
   return MODE[type] ? MODE[type] : null;
 }
 
+// 获取指定日期
+export function getSpecifyTime(day) {
+  let oneDayTimesTamp = 1000 * 60 * 60 * 24;
+  let forwardTimeTamp = oneDayTimesTamp * day;
+  let currentTimesTamp = Date.parse(new Date());
+
+  let targetTimesTamp = currentTimesTamp - forwardTimeTamp;
+  return getNowDate('FULL', targetTimesTamp);
+}
+
 export function getZoneTamp(zone = 0) {
   const _date = new Date();
   const oneMinute = 1000 * 60;
