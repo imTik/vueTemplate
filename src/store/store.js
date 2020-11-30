@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import LOCAL from '../utils/localStorageFn';
+import actions from './actions';
 // import packageConfig from '../../package';
 
 Vue.use(Vuex);
@@ -51,5 +52,6 @@ export default new Vuex.Store({
       if (!state.token) state.token = LOCAL.get('TOKEN');
       return state.token;
     }
-  }
+  },
+  actions
 });

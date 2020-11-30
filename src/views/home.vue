@@ -6,9 +6,6 @@
 </template>
 
 <script>
-import { initSDK, getUserInfo } from '../utils/WX_FN';
-import { getUrlParams } from '../utils/publicFn';
-
 export default {
   name: 'home',
   data() {
@@ -19,14 +16,11 @@ export default {
   async created() {
 
     try {
-      const apiList = ['startWifi']; // 具体参考企业微信API
-      const corpId = getUrlParams('state');
-      initSDK(corpId, apiList); // 注册SDK
 
-      let { result } = await getUserInfo(); // 获取用户信息
-      if (!result) throw ('用户信息获取失败');
-      this.$store.commit('SAVE_USER_INFO', result);
-      this.$store.commit('SAVE_TOKEN', result.token);
+      // let userInfo = await this.$store.dispatch('loginByToken');
+      let userInfo = await this.$store.dispatch('loginByCode');
+      this.$store.dispatch('initSDK');
+      console.log('用户信息', userInfo);
 
     }
     catch (e) {

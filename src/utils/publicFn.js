@@ -185,6 +185,35 @@ export function dataURItoBlob(dataURI) {
   });
 }
 
+// 检测js sdk api
+export function checkApi(api, sdk, callback) {
+  try {
+    if (!sdk) throw '微信JS-SDK注册失败,无法使用';
+
+    sdk.checkJsApi({
+      jsApiList: [api],
+      success: res => {
+        if (!res.checkResult[api]) throw '微信JS-SDK不支持该功能';
+        sdk[api](callback);
+      }
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// 获取url
+export function getUrlNoHash() {
+  var href = window.location.href;
+  var hash = window.location.hash;
+  if (!hash) {
+    return href;
+  } else if (href) {
+    return href.substr(0, href.length - hash.length);
+  }
+  return null;
+}
+
 // pako 加密
 // export function pakoEncrypt (data) {
 //   let dataStr = JSON.stringify(data);
