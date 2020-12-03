@@ -39,7 +39,7 @@ export const REX_MAP = {
       if (val.length === 18) {
         let regex = /^[0-9A-Z]+$/;
         let regBusinessLicense = new RegExp('[IOZSV]');
-        return regex.test(val) && !regBusinessLicense.test(value)
+        return regex.test(val) && !regBusinessLicense.test(val)
           ? true
           : false;
       } else {

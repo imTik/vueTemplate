@@ -35,8 +35,7 @@ export function errHandler(e, msg) {
       } else if (msg) {
         Toast(msg);
       } else {
-        Toast('系统开小差了...');
-        console.error(e);
+        Toast('系统说: ', e);
       }
     }
   }
