@@ -39,9 +39,7 @@ export const REX_MAP = {
       if (val.length === 18) {
         let regex = /^[0-9A-Z]+$/;
         let regBusinessLicense = new RegExp('[IOZSV]');
-        return regex.test(val) && !regBusinessLicense.test(val)
-          ? true
-          : false;
+        return regex.test(val) && !regBusinessLicense.test(val) ? true : false;
       } else {
         let regex = /^[0-9A-Z]+$/;
         return regex.test(val) ? true : false;
@@ -84,11 +82,14 @@ export function getNowDate(type = 'FULL', tamp) {
 
 // 获取指定日期
 export function getSpecifyDay(day, type = 'YMD') {
+  let plus = day > 0;
   let oneDayTimesTamp = 1000 * 60 * 60 * 24;
   let forwardTimeTamp = oneDayTimesTamp * day;
   let currentTimesTamp = Date.parse(new Date());
 
-  let targetTimesTamp = currentTimesTamp - forwardTimeTamp;
+  let targetTimesTamp = plus
+    ? currentTimesTamp - forwardTimeTamp
+    : currentTimesTamp + forwardTimeTamp;
   return getNowDate(type, targetTimesTamp);
 }
 
