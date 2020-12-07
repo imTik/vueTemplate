@@ -76,7 +76,7 @@ export function getBrowseInfo() {
 export function getNowDate(type = 'FULL', tamp) {
   // console.log('拿到的日期', tamp);
   if (tamp && typeof tamp === 'string') tamp = tamp.split('.')[0]; // 防止 2020-11-30T01:46:44.490+0000 格式的日期
-  if (BROWSER_INFO.ios && typeof tamp === 'string' && tamp.indexOf('-')) tamp = iosDate(tamp);
+  if (BROWSER_INFO.ios && typeof tamp === 'string' && tamp.indexOf('-')) tamp = iosDate(tamp); // - 替换 /
   // console.log('处理后的日期', tamp);
   const _date = tamp ? new Date(tamp) : new Date();
   let Y = _date.getFullYear();
@@ -94,15 +94,15 @@ export function getNowDate(type = 'FULL', tamp) {
 
   const MODE = {
     TAMP: Date.parse(_date),
-    FULL: Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S,
-    YMD: Y + '-' + M + '-' + D,
-    YM: Y + '-' + M,
+    FULL: Y + '/' + M + '/' + D + ' ' + H + ':' + Mi + ':' + S,
+    YMD: Y + '/' + M + '/' + D,
+    YM: Y + '/' + M,
     T: H + ':' + Mi + ':' + S
   };
   type = type.toUpperCase();
 
-  let OUTPUT = MODE[type];
-  if (BROWSER_INFO.ios && typeof OUTPUT === 'string' && OUTPUT.indexOf('-')) OUTPUT = iosDate(OUTPUT);
+  let OUTPUT = MODE[type] || null;
+  // if (BROWSER_INFO.ios && typeof OUTPUT === 'string' && OUTPUT.indexOf('-')) OUTPUT = iosDate(OUTPUT);
   // console.log('输出的日期', OUTPUT);
   return OUTPUT;
 }
