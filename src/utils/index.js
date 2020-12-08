@@ -76,7 +76,8 @@ export function getBrowseInfo() {
 export function getNowDate(type = 'FULL', tamp) {
   // console.log('拿到的日期', tamp);
   if (tamp && typeof tamp === 'string') tamp = tamp.split('.')[0]; // 防止 2020-11-30T01:46:44.490+0000 格式的日期
-  if (BROWSER_INFO.ios && typeof tamp === 'string' && tamp.indexOf('-')) tamp = iosDate(tamp); // - 替换 /
+  if (BROWSER_INFO.ios && typeof tamp === 'string' && tamp.indexOf('-'))
+    tamp = iosDate(tamp); // - 替换 /
   // console.log('处理后的日期', tamp);
   const _date = tamp ? new Date(tamp) : new Date();
   let Y = _date.getFullYear();
@@ -108,11 +109,13 @@ export function getNowDate(type = 'FULL', tamp) {
 }
 
 // 获取指定日期
-export function getSpecifyDay(day, type = 'YMD') {
+export function getSpecifyDay(day, specify, type = 'YMD') {
   let plus = day > 0;
   let oneDayTimesTamp = 1000 * 60 * 60 * 24;
   let forwardTimeTamp = oneDayTimesTamp * day;
-  let currentTimesTamp = Date.parse(new Date());
+  let currentTimesTamp = specify
+    ? getNowDate('TAMP', specify)
+    : Date.parse(new Date());
 
   let targetTimesTamp = plus
     ? currentTimesTamp - forwardTimeTamp
