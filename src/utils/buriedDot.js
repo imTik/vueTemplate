@@ -11,7 +11,7 @@
  * 
  */
 import { debounce } from '../mode/index';
-import { getNowDate } from './publicFn';
+import { getNowDate } from './index';
 function BuriedDot(router, cb, leaveTime = 60000) {
   let pageCount = 0;
   let lastTime = 0;

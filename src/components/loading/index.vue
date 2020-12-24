@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { Loading } from 'element-ui';
+// import { Loading } from 'element-ui';
 export default {
   name: 'loading',
   data() {
@@ -16,12 +16,12 @@ export default {
     }
   },
   mounted() {
-    this.loading = Loading.service({
-      target: this.$refs['pl-loadding'],
-      text: this.text,
-      background: 'rgba(0,0,0,.7)',
-      customClass: 'customize'
-    });
+    // this.loading = Loading.service({
+    //   target: this.$refs['pl-loadding'],
+    //   text: this.text,
+    //   background: 'rgba(0,0,0,.7)',
+    //   customClass: 'customize'
+    // });
   },
   methods: {
     close() {

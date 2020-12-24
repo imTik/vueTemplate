@@ -3,49 +3,10 @@ import App from './App.vue';
 import router from './router/router';
 import store from './store/store';
 
-// ui框架引入
-import {
-  Button,
-  Toast,
-  Loading,
-  Field,
-  Popup,
-  Picker,
-  Dialog,
-  RadioGroup,
-  Radio,
-  Uploader,
-  DropdownMenu,
-  DropdownItem
-} from 'vant';
-import 'vant/lib/index.css';
-Vue.use(Button)
-  .use(Toast)
-  .use(Loading)
-  .use(Field)
-  .use(Popup)
-  .use(Picker)
-  .use(Dialog)
-  .use(RadioGroup)
-  .use(Radio)
-  .use(Uploader)
-  .use(DropdownMenu)
-  .use(DropdownItem);
+import './config/uiFrame';
+import './config/tool';
 
 Vue.config.productionTip = false;
-
-import alertTips from './components/alertTips';
-import loading from './components/loading';
-Vue.prototype.$alertTips = alertTips;
-Vue.prototype.$loading = loading;
-
-// 全局组件
-import globalComponent from './utils/components';
-Vue.use(globalComponent);
-
-// 全局混入
-import GL_Mixin from './utils/GL_Mixin';
-Vue.mixin(GL_Mixin);
 
 import i18n from './i18n';
 // document.title = i18n.t('pageTitle');

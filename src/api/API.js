@@ -9,5 +9,13 @@ export function getSignatureByApp(params) {
 }
 
 export function loginWX(params) {
-  return HTTP.post('/user-center/security/user/loginWX', reqModel(params));
+  return HTTP.post('/user-center/security/user/loginWX', reqModel(params, 'sign'));
+}
+
+export function getUserByToken(params) {
+  return HTTP.post('/user-center/getUserByToken', reqModel(params, 'sign'));
+}
+
+export function getUserById(params) {
+  return HTTP.post('/user-center/user/queryByUserId', reqModel(params, 'sign'));
 }
