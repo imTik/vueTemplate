@@ -19,3 +19,12 @@ export function getUserByToken(params) {
 export function getUserById(params) {
   return HTTP.post('/user-center/user/queryByUserId', reqModel(params, 'sign'));
 }
+
+export function downPDF(file) {
+  return HTTP.get('/paperless-4408-h5-api/file/pic/download/' + file, '', {
+    headers: {
+      format: 'blob'
+    },
+    responseType: 'blob'
+  });
+}

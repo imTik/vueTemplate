@@ -226,6 +226,18 @@ export function dataURItoBlob(dataURI) {
   });
 }
 
+// 下载blob文件
+export function downBlobFile(content, fileName) {
+  let el = document.createElement('a');
+  el.download = fileName;
+  el.style.display = 'none';
+  let blob = new Blob([content]);
+  el.href = URL.createObjectURL(blob);
+  document.body.appendChild(el);
+  el.click();
+  document.body.removeChild(el);
+}
+
 // 检测js sdk api
 export function checkApi(api, sdk, callback) {
   try {
