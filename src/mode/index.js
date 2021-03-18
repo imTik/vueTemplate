@@ -1,5 +1,5 @@
 // 创建单例
-export function getSingleton(fn) {
+export function createSingleton(fn) {
   let result;
   return function() {
     return result || (result = fn.apply(this, arguments));
@@ -23,11 +23,18 @@ export function debounce(fn, delay = 200) {
 
 // 前置装饰者
 export function decoratorBefore(fn, before) {
-  let moreArgs = Array.from(arguments);
-  moreArgs.splice(fn, 2);
   return function() {
-    let _args = Array.from(arguments);
-    before.apply(this, _args.concat(moreArgs));
-    return fn.apply(this, _args.concat(moreArgs));
+    before.apply(this, arguments);
+    let res = fn.apply(this, arguments);
+    return res;
   };
 }
+
+// 后置装饰者
+export function decoratorAfter(fn, after) {
+  return function() {
+    let res = fn.apply(this, arguments);
+    after.apply(this, arguments);
+    return res;
+  };
+};
