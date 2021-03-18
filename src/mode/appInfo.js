@@ -1,4 +1,4 @@
-import { getSingleton } from './index';
+import { createSingleton } from './index';
 
 let getApp = function(config) {
   let appInfo = {
@@ -12,6 +12,6 @@ let getApp = function(config) {
   return appInfo;
 };
 
-let createApp = getSingleton(getApp);
+let createApp = createSingleton(getApp);
 
 export default createApp;
