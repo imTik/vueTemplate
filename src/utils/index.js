@@ -267,18 +267,36 @@ export function getUrlNoHash() {
   return null;
 }
 
-// pako 加密
-// export function pakoEncrypt (data) {
-//   let dataStr = JSON.stringify(data);
-//   let encrypt = pako.gzip(dataStr, {to:'string'}); // deflate gzip
-//   let data64 = window.btoa(encrypt);
-//   return data64;
-// }
+// 创建单例
+export function getSingleton(fn) {
+  let result;
+  return function() {
+    return result || (result = fn.apply(this, arguments));
+  };
+}
 
-// // pako 解密
-// export function pakoDecrypt (data) {
-//   let dataStr = window.atob(data);
-//   let decrypt = pako.inflate(dataStr, {to:'string'});
-//   let output = JSON.parse(decrypt);
-//   return output;
-// }
+// 防抖
+export function debounce(fn, delay = 200) {
+  let timer = null;
+
+  return function() {
+    let arg = arguments;
+    clearTimeout(timer);
+    timer = null;
+
+    timer = setTimeout(() => {
+      fn.apply(this, arg);
+    }, delay);
+  };
+}
+
+// 前置装饰者
+export function decoratorBefore(fn, before) {
+  let moreArgs = Array.from(arguments);
+  moreArgs.splice(fn, 2);
+  return function() {
+    let _args = Array.from(arguments);
+    before.apply(this, _args.concat(moreArgs));
+    return fn.apply(this, _args.concat(moreArgs));
+  };
+}

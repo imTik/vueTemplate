@@ -5,7 +5,7 @@ module.exports = {
   lintOnSave: false,
 
   publicPath: '/you_project_name',
-  outputDir: 'you_project_name',
+  outputDir: 'dist',
 
   productionSourceMap: false,
 

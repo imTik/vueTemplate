@@ -17,8 +17,7 @@ export default {
 
     try {
 
-      // let userInfo = await this.$store.dispatch('loginByToken');
-      let userInfo = await this.$store.dispatch('loginByCode');
+      let userInfo = await this.$store.dispatch('loginByToken');
       this.$store.dispatch('initSDK');
       console.log('用户信息', userInfo);
 

@@ -10,7 +10,6 @@
  * @param {Number | String} leaveTime 
  * 
  */
-import { debounce } from '../mode/index';
 import { getNowDate } from './index';
 function BuriedDot(router, cb, leaveTime = 60000) {
   let pageCount = 0;
@@ -102,8 +101,6 @@ function BuriedDot(router, cb, leaveTime = 60000) {
     checkDataAttribute();
     cb('leave', dotDetail);
   }
-  const moveDebounce = debounce(moveHandler, leaveTime);
-  BODY.addEventListener('mousemove', e => moveDebounce());
 
   // 关闭页面埋点
   window.onbeforeunload = function(e) {
