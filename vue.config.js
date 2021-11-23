@@ -4,7 +4,7 @@ module.exports = {
   // 关闭eslint
   lintOnSave: false,
 
-  publicPath: '/you_project_name',
+  publicPath: '/demo-app',
   outputDir: 'dist',
 
   productionSourceMap: false,
