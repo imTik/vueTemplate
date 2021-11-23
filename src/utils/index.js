@@ -166,13 +166,13 @@ export function dataToForm(d) {
 // 网络请求参数处理
 export function reqModel(params, type = '') {
   let _param = {
-    appName: store.getters.APP_NAME,
+    appName: packageConfig.name,
     format: '',
     param: params,
     sign: '',
     source: '',
     timestamp: getNowDate('tamp'),
-    version: packageConfig.version
+    version: packageConfig.version,
   };
   type === 'sign' && (_param.sign = createdSign(_param));
   return _param;
