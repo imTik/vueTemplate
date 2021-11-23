@@ -1,6 +1,5 @@
 import axios from 'axios';
-import store from '../store/store';
-import { errHandler } from '../utils/ErrorHandler';
+import { errHandler } from '../../utils/ErrorHandler';
 import SERVER from './serverConfig';
 
 axios.defaults.baseURL = SERVER.WECHAT;

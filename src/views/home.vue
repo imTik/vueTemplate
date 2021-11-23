@@ -1,6 +1,6 @@
 <template>
   <div class="home-main">
-    <h1 data-dot="title_point">Vue Front 项目模板</h1>
+    <h1 data-dot="title_point">Demo App</h1>
     <global-loading mask="small" v-show="loading" />
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 
     try {
 
-      let userInfo = await this.$store.dispatch('loginByToken');
+      let userInfo = await this.$store.dispatch('loginByCode');
       this.$store.dispatch('initSDK');
       console.log('用户信息', userInfo);
 
